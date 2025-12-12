@@ -7,25 +7,25 @@ void merge(int arr[] , int low , int mid , int high){
     int l = low;
     int r = mid+1;
 
-    while(l<=mid && high>=mid+1){
-        if(arr[l]<arr[r]){
+    while(l<=mid && high>=mid+1){  // this will take two pointer and compare both values 
+        if(arr[l]<arr[r]){ // push the value of left pointer to temp
             temp.push_back(arr[l]);
             l++;
-        }else{
+        }else{  //push the value of right pointer to temp
             temp.push_back(arr[r]);
             r++;
         }
     }
-    while(l<=mid){
+    while(l<=mid){  // if right part is exhausted the run for remaining left part
         temp.push_back(arr[l]);
         l++;
     };
-    while(r<=high){
+    while(r<=high){ // if left part is exhausted run for remaining right part
         temp.push_back(arr[r]);
         r++;
     }
 
-    for(int i = 0; i<temp.size() ; i++){
+    for(int i = 0; i<temp.size() ; i++){   // copy the temp into original array
         arr[low+i] = temp[i];
     }
 }
@@ -36,9 +36,9 @@ void mergesort(int arr[] , int low , int high){
     if(high <= low){
         return;
     }
-    mergesort(arr , low , mid);
-    mergesort(arr , mid+1 , high);
-    merge(arr , low , mid , high );
+    mergesort(arr , low , mid); //this will divide the left half
+    mergesort(arr , mid+1 , high); // this will divide the right half
+    merge(arr , low , mid , high ); // this will merge 
 }
 
 
